@@ -1,0 +1,56 @@
+Instructions for running RMI source code examples.
+--------------------------------------------------
+
+The instructions for running the RMI code examples that
+are provided in the text are sufficient for JDK 1.1. However,
+the new security model of the Java 2 (JDK 1.2) requires
+using setting a security policy. 
+
+If you are running these source code examples using Java 2
+or later, please follow the following:
+
+1. Compile all source files.
+
+2. Generate the stub and skeleton class files using RMIC.
+
+	rmic MessageQueueImpl
+
+3. Start the registry (rmiregistry)
+
+The  above is the same as provided in the text. The following
+steps will require the use of a security policy file. The directory
+containing the RMI source code also contains a security file.
+of this file is "java.policy". It contains the following:
+
+
+	grant {
+        	permission java.net.SocketPermission "*:1024-65535",
+               		"connect,accept";
+	};
+
+
+This policy file allows a Java program to connect to or to accept connections
+from any ports numbered 1024 - 65535. By default, RMI uses port 1099.
+
+4. Create the remote object specifying a security policy
+
+	java -Djava.security.policy=java.policy MessageQueueImpl
+
+This specifies using a security policy contained in the file java.policy.
+
+5. Start the factory:
+
+	java -Djava.security.policy=policy.policy Factory
+
+This also specifies using the same security file as the remote object.
+
+* The directions outlined in this file and in the text assume you are running
+this on the same host. Running the RMI example on multiple hosts will require
+further instructions and typically vary depending upon the systems you are running
+them from. Generally, changing the IP address from 127.0.0.1 to the IP address
+of the host you are running the server from should be sufficient. Also make sure
+that all class files are available on both the client and the server side.
+
+It is possible to have the server download the class files to the client. For
+details how to do this, please consult the RMI homepage at
+http://java.sun.com/products/jdk/rmi

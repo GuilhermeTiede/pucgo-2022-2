@@ -1,0 +1,4 @@
+O registro deve ser acionado de dentro da pasta onde se encontra o arquivo *.policy
+
+eu testei com java 8 no ubuntu
+sudo apt-get install openjdk-8-jdk

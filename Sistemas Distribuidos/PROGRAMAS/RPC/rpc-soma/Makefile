@@ -1,0 +1,9 @@
+RPC:
+	rpcgen -C simp.x
+	gcc -c *.c
+	gcc -o client simpclient.o simp_clnt.o simp_xdr.o 
+	gcc -o server simpservice.o simp_svc.o simp_xdr.o -lrpcsvc
+	@echo "Servidor Executando"
+	./server
+	
+
