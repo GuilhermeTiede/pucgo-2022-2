@@ -6,6 +6,7 @@ using namespace std;
 struct subRede
 {
     //SubRede
+    int* IpBinSub;
     int* IpBinSub = new int [32];
     int *IpDecimalSub = new int[4];
 
