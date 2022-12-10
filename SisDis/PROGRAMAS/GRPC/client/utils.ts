@@ -1,10 +1,10 @@
 import { UsersClient } from "../proto/users_grpc_pb";
 import { credentials } from "grpc";
 
-const port = 3000;
+const port = 50051;
 
 export const client = new UsersClient(
-  `localhost:${port}`,
+  `10.43.27.226:${port}`,
   credentials.createInsecure()
 );
 
